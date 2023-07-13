@@ -9,6 +9,7 @@ namespace IQFeed.CSharpApiClient.Lookup.Chains.Equities
             Month = month;
             Side = side;
         }
+        // make static lookup table and decode / encode by inversion.
 
         public int Month { get; }
         public OptionSide Side { get; }
@@ -67,6 +68,41 @@ namespace IQFeed.CSharpApiClient.Lookup.Chains.Equities
                     return new EquityOptionMonthCode(11, OptionSide.Put);
                 case "X":
                     return new EquityOptionMonthCode(12, OptionSide.Put);
+                default:
+                    throw new Exception();
+            }
+        }
+
+        public static string Encode(EquityOptionMonthCode code)
+        {
+            int month = code.Month;
+            OptionSide side = code.Side;
+            switch (month)
+            {
+                case 1:
+                    return side == OptionSide.Call ? "A" : "M";
+                case 2:
+                    return side == OptionSide.Call ? "B" : "N";
+                case 3:
+                    return side == OptionSide.Call ? "C" : "O";
+                case 4:
+                    return side == OptionSide.Call ? "D" : "P";
+                case 5:
+                    return side == OptionSide.Call ? "E" : "Q";
+                case 6:
+                    return side == OptionSide.Call ? "F" : "R";
+                case 7:
+                    return side == OptionSide.Call ? "G" : "S";
+                case 8:
+                    return side == OptionSide.Call ? "H" : "T";
+                case 9:
+                    return side == OptionSide.Call ? "I" : "U";
+                case 10:
+                    return side == OptionSide.Call ? "J" : "V";
+                case 11:
+                    return side == OptionSide.Call ? "K" : "W";
+                case 12:
+                    return side == OptionSide.Call ? "L" : "X";
                 default:
                     throw new Exception();
             }

@@ -48,6 +48,8 @@ namespace IQFeed.CSharpApiClient.Lookup.Chains.Equities
             return new EquityOption(optionSymbol, equitySymbol, strikePrice, expiration, side);
         }
 
+        // Add OptionSymbol() method
+
         public override bool Equals(object obj)
         {
             return obj is EquityOption message &&
